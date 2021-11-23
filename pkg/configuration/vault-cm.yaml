@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vault-cm
+  namespace: operator-data-replace-inline
+  labels:
+    app.kubernetes.io/name: vault-cm
+    app.kubernetes.io/part-of: operator-data-replace-inline
+    
+  annotations:
+    datareplaceinline/config-type: vault
+data:
+  #type: "vault"
+  server: "http://vault:9080"
+  ##credentials.type: "token"
+  ##credentials.secret: "name-secret"
+  credentials.type: ""

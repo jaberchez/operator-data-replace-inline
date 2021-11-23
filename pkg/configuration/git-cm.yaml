@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: git-cm
+  namespace: operator-data-replace-inline
+  labels:
+    app.kubernetes.io/name: git-cm
+    app.kubernetes.io/part-of: operator-data-replace-inline
+
+  annotations:
+    datareplaceinline/config-type: git
+data:
+  #type: "git"
+  revision: "master"
+  repo: "https://github.com/jaberchez/kustomize-plugins"
+  pathFile: "config/config.yaml"
+  typeFile: "yaml"
+  credentials: ""
+  #credentials: "name-secret"

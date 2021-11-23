@@ -1,0 +1,37 @@
+#apiVersion: data.example.com/v1alpha1
+#kind: DataReplaceInline
+#metadata:
+#  name: datareplaceinline-sample
+#spec:
+#  # Add fields here
+#  foo: bar
+
+apiVersion: data.example.com/v1alpha1
+kind: DataReplaceInline
+metadata:
+  name: nginx-deployment
+  namespace: nginx
+spec:
+  manifest: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx
+      namespace: nginx
+      labels:
+        app: nginx
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: nginx
+      template:
+        metadata:
+          labels:
+            app: nginx
+        spec:
+          containers:
+          - name: nginx
+            image: ${vault-01:kvsecrets/docker_images@nginx}
+            ports:
+            - containerPort: 80
